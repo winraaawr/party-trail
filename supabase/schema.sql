@@ -228,3 +228,13 @@ alter table public.locations       replica identity full;
 alter table public.itinerary_items replica identity full;
 alter table public.stays           replica identity full;
 alter table public.trip_members    replica identity full;
+
+-- ─── Function privileges ─────────────────────────────────────────────────────
+-- Trigger functions are never called directly.
+revoke execute on function public.handle_new_user() from public, anon, authenticated;
+revoke execute on function public.handle_new_trip() from public, anon, authenticated;
+-- Membership check (used inside RLS) and joining are for signed-in users only.
+revoke execute on function public.is_trip_member(uuid) from public, anon;
+revoke execute on function public.join_trip(text) from public, anon;
+grant execute on function public.is_trip_member(uuid) to authenticated;
+grant execute on function public.join_trip(text) to authenticated;

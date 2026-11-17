@@ -40,7 +40,7 @@ The demo trip works without any keys.
 
 1. Push this folder to a GitHub repo on `main`.
 2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-3. **Settings → Secrets and variables → Actions**, add the repository secrets `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Both values ship in the browser bundle; that's expected. Row-level security is what protects the data.
+3. The Supabase URL and anon key are set in `.github/workflows/deploy.yml`. Both are public by design (they ship in the browser bundle); row-level security is what protects the data. For your own fork, replace them with your project's values.
 4. Push. `.github/workflows/deploy.yml` builds with the right base path (`/<repo>`) and publishes `out/`.
 
 ## How it fits GitHub Pages

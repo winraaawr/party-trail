@@ -32,8 +32,10 @@ jobs:
           else echo "NEXT_PUBLIC_BASE_PATH=/$repo" >> "$GITHUB_ENV"; fi
       - run: npm run build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          # Public by design: these ship in every visitor's browser bundle.
+          # Data is protected by row-level security in supabase/schema.sql.
+          NEXT_PUBLIC_SUPABASE_URL: https://jnocstylsvdmuoozvtze.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impub2NzdHlsc3ZkbXVvb3p2dHplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ5NDEwNDYsImV4cCI6MjExMDUxNzA0Nn0.DPI5BY-8eciKpB7mnPdXrqsT6f39BYCMFp2pQVgxVZA
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
