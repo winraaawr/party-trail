@@ -9,7 +9,7 @@ A shared map for trips with friends: where everyone is right now, what's next on
 - **Realtime**: locations, stops, stays and new members sync live through Supabase Realtime.
 - **Demo trip** at `/trip/?id=demo` runs without a backend.
 
-Stack: Next.js (static export) · Supabase (Auth, Postgres with RLS, Realtime) · Leaflet with OpenStreetMap/CARTO tiles · Nominatim place search · GitHub Pages.
+Stack: Next.js (static export) · Supabase (Auth, Postgres with RLS, Realtime) · Leaflet with OpenStreetMap tiles · Nominatim place search · GitHub Pages.
 
 ## Run it locally
 
@@ -56,7 +56,7 @@ Pages only serves static files, so everything runs in the browser:
 - **Reminders fire while the app is open** (any tab, including background tabs once notifications are allowed). Reminders with the app closed need Web Push: a service worker plus a scheduled Supabase Edge Function that sends the pushes. That's the natural next step.
 - **Location sharing is foreground-only.** Browsers don't allow background geolocation for web apps. Locations older than 15 minutes show as "last seen".
 - Place search uses the public Nominatim service (one request per second, fair use). For heavy traffic, switch to a keyed geocoder.
-- Map tiles come from CARTO's free basemaps (attribution required, fair use).
+- Map tiles come from OpenStreetMap's public tile server: no key needed, attribution required, fine for a friends-sized app. For heavy traffic, switch the tile URL in `src/components/TripMap.tsx` to a keyed provider.
 
 ## Design
 

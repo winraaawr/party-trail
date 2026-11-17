@@ -145,9 +145,9 @@ export default function TripMap(props: Props) {
   }, [routed.length > 0, stays.length > 0, Object.keys(locations).length > 0]);
 
   // Standard 256px tiles drawn at 512px: the basemap itself becomes pixel art.
-  const tiles = dark
-    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
-    : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png";
+  // OpenStreetMap's own tiles: no key or account. Night mode is a CSS filter
+  // on the tile pane (see --map-filter), so one tile set serves both themes.
+  const tiles = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   return (
     <MapContainer center={[20, 0]} zoom={2} zoomControl minZoom={3} worldCopyJump className="map">
@@ -157,7 +157,7 @@ export default function TripMap(props: Props) {
         tileSize={512}
         zoomOffset={-1}
         maxZoom={19}
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <SizeWatcher />
       <FitOnce points={initialPoints} />

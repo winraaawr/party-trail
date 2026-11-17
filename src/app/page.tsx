@@ -79,7 +79,7 @@ function Landing({ configured }: { configured: boolean }) {
           </ol>
         </div>
       </section>
-      <footer className="footer">Map data © OpenStreetMap contributors, tiles © CARTO.</footer>
+      <footer className="footer">Map data and tiles © OpenStreetMap contributors.</footer>
     </main>
   );
 }
